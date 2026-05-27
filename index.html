@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TODO Web</title>
     <link type="text/css" href="styles/main.css" rel="stylesheet" />
-    <script src="src/loginStore.js"></script>
+    <script type="module" src="src/loginStore.js"></script>
 </head>
 <body>
     <h1>Đăng nhập</h1>
@@ -20,6 +20,8 @@
         <br />
 
         <button type="submit" id="login-button" data-testid="login-submit">Đăng nhập</button>
+
+        <div id="login-message" class="login-message"></div>
     </form>
     <script>
         // Tìm phần tử có id "form-login"
@@ -32,7 +34,9 @@
             var password = document.getElementById("password-input").value;
             // Gọi hàm xử lý
             var thongbao = login(email, password);
-            alert(thongbao);
+            // alert(thongbao);
+            const loginMessage = document.getElementById("login-message");
+            loginMessage.textContent = thongbao;
         });
     </script>
 </body>

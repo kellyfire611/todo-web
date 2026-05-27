@@ -1,10 +1,28 @@
-function login(emailInput, passwordInput) {
+export function validateEmail(emailInput) {
+  if (!emailInput) {
+    return false;
+  }
+
+  return true;
+}
+
+export function validatePassword(passwordInput) {
+  if (!passwordInput) {
+    return false;
+  }
+
+  return true;
+}
+
+export function login(emailInput, passwordInput) {
     // 1. Kiểm tra email
-    if(!emailInput) {
+    var emailValid = validateEmail(emailInput);
+    if(!emailValid) {
         return "Vui lòng nhập email!";
     }
     // 2. Kiểm tra mật khẩu
-    if(!passwordInput) {
+    var passwordValid = validatePassword(passwordInput);
+    if(!passwordValid) {
         return "Vui lòng nhập mật khẩu!";
     }
     // 3. Kiểm tra logic/nghiệp vụ: 
@@ -16,4 +34,9 @@ function login(emailInput, passwordInput) {
     } else {
         return "Đăng nhập thất bại!";
     }
+}
+
+// Giữ tương thích với trang HTML đang gọi login(...) từ window.
+if (typeof window !== "undefined") {
+  window.login = login;
 }
